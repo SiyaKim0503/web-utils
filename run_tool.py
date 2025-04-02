@@ -2,7 +2,11 @@ import streamlit as st
 import os
 
 st.set_page_config(page_title="Web Utils", layout="wide")
-st.title("🛠 Web Utility 도구 모음")
+st.markdown(
+    "<div style='font-size:22px; font-weight:600; margin-bottom: 10px;'>Web Utility 도구 모음</div>",
+    unsafe_allow_html=True
+)
+
 
 # 사용할 도구 목록
 TOOLS = {
@@ -11,7 +15,7 @@ TOOLS = {
 }
 
 # 사이드바에서 도구 선택
-tool_choice = st.sidebar.selectbox("사용할 도구를 선택하세요", list(TOOLS.keys()))
+tool_choice = st.sidebar.radio("사용할 도구를 선택하세요", list(TOOLS.keys()))
 
 # 선택한 도구의 app.py 파일을 실행
 tool_path = TOOLS[tool_choice]
