@@ -79,8 +79,16 @@ if uploaded_file:
                     else:
                         pre_oi_display_token = pre_oi_token_raw # 태그 없는 토큰 대비
                 
-                # 3-5. 중간 구간 추출 ('에서' 다음부터 '어 있' 앞 어휘 시작 전까지)
-                middle_context = " ".join(tokens[eseo_idx + 1 : pre_oi_start_idx])
+                # 3-5. 중간 구간: '에서' 다음부터 '어 있 앞' 시작 전까지
+                middle_end_idx = pre_oi_start_idx
+                
+                # 중복 제거: '중간 구간'의 마지막 토큰과 '어 있 앞' 첫 토큰이 같다면 제거
+                if middle_end_idx - 1 >= eseo_idx + 1:
+                    middle_last_token = tokens[middle_end_idx - 1]
+                    if pre_oi_display_token.startswith(middle_last_token):
+                        middle_end_idx -= 1 # 중복 제거
+
+                middle_context = " ".join(tokens[eseo_idx + 1 : middle_end_idx])
 
                 # 3-6. '어 있' 토큰
                 oi_token = "어:EC 있:VX"
