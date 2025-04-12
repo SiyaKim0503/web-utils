@@ -11,8 +11,11 @@ st.markdown(
 # 사용할 도구 목록
 TOOLS = {
     "📄 JSON 열 추출기": "tools/json_column_extractor/app.py",
-    "🔍 형태소 분석기": "tools/morpheme_analyzer/app.py"
+    "🔍 형태소 분석기": "tools/morpheme_analyzer/app.py",
+    "✨ 어 있 결과 뷰어": "tools/morpheme_chain_highlighter/app.py"  # ← 변경된 항목
 }
+
+
 
 # 사이드바에서 도구 선택
 tool_choice = st.sidebar.radio("사용할 도구를 선택하세요", list(TOOLS.keys()))
